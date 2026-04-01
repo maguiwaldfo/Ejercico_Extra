@@ -39,5 +39,30 @@ public class Entrevista
     {
         return this.FechaHora;
     }
+
+    public string GetCandidato()
+    {
+        return this.Candidato;
+    }
+
+    public int GetDuracion()
+    {
+        return this.Duracion;
+    }
+
+    public string GetPuesto()
+    {
+        return this.Puesto;
+    }
+
+    public string GetEntrevistador()
+    {
+        return this.Entrevistador;
+    }
+
+    public override string ToString()
+    {
+        return $"Candidato: {this.Candidato}, FechaHora: {this.FechaHora}, Duracion: {this.Duracion} min, Puesto: {this.Puesto}, Entrevistador: {this.Entrevistador}";
+    }
 }
 

@@ -19,7 +19,15 @@ public class GestorEntrevistas
 
     public void eliminarEntrevista(int dni)
     {
-        this.Entrevistas.Remove(dni);
+        bool x = this.Entrevistas.ContainsKey(dni);
+        if (x== true){
+            Console.WriteLine("Entrevista eliminada");
+            this.Entrevistas.Remove(dni);
+        }
+        else{
+            Console.WriteLine("No se encontró la entrevista con el DNI proporcionado.");
+        }
+        
     }
 
     public bool modificarEntrevista(int dni, DateTime nuevaFechaHora, int nuevaDuracion)
@@ -30,6 +38,9 @@ public class GestorEntrevistas
             this.Entrevistas[dni].modificarFechaHora(nuevaFechaHora);
             this.Entrevistas[dni].modificarDuracion(nuevaDuracion);
             x= true;
+        }
+        else {
+            Console.WriteLine("No se encontró la entrevista con el DNI proporcionado.");
         }
         return x;
     }
@@ -79,9 +90,10 @@ public class GestorEntrevistas
     }
 
     public void listarTodasLasEntrevistas(){
-        foreach (var elemento in this.Entrevistas)
+        foreach (int dni in this.Entrevistas.Keys)
         {
-            Console.WriteLine("DNI: " + elemento.Key + " - Candidato: " + elemento.Value.Candidato + " - Fecha y Hora: " + elemento.Value.GetFechaHora() + " - Duracion: " + elemento.Value.Duracion + " - Puesto: " + elemento.Value.Puesto + " - Entrevistador: " + elemento.Value.Entrevistador);
+            Entrevista entrevista = this.Entrevistas[dni];
+            Console.WriteLine("DNI: " + dni + " - Candidato: " + entrevista.GetCandidato() + " - Fecha y Hora: " + entrevista.GetFechaHora() + " - Duracion: " + entrevista.GetDuracion() + " - Puesto: " + entrevista.GetPuesto() + " - Entrevistador: " + entrevista.GetEntrevistador());
         }
     }
 
